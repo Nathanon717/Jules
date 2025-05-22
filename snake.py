@@ -64,11 +64,17 @@ class SnakeGame:
         self.direction = "Right"
         self.new_direction = "Right"
 
-        # Initial snake (3 segments in the middle)
+        # Calculate middle segment position ensuring grid alignment
+        mid_x_segment = WIDTH // (2 * SEGMENT_SIZE)
+        mid_y_segment = HEIGHT // (2 * SEGMENT_SIZE)
+
+        start_x_head = mid_x_segment * SEGMENT_SIZE
+        start_y_head = mid_y_segment * SEGMENT_SIZE
+
         self.snake_segments = [
-            (WIDTH // 2 - 2 * SEGMENT_SIZE, HEIGHT // 2),
-            (WIDTH // 2 - SEGMENT_SIZE, HEIGHT // 2),
-            (WIDTH // 2, HEIGHT // 2)
+            (start_x_head - 2 * SEGMENT_SIZE, start_y_head),
+            (start_x_head - SEGMENT_SIZE, start_y_head),
+            (start_x_head, start_y_head)
         ]
         self.create_food()
         self.game_loop()
